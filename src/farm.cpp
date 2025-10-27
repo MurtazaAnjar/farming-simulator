@@ -23,6 +23,10 @@ int Farm::number_of_columns() {
   return columns;
 }
 
+int Farm::getDay() {
+  return day;
+}
+
 std::string Farm::get_symbol(int row, int column) {
   if(player->row() == row && player->column() == column) {
     return "@";
@@ -41,6 +45,7 @@ void Farm::plant(int row, int column, Plot *plot) {
 }
 
 void Farm::end_day(){
+  day++;
   for(int i = 0; i < rows; i++) {
     for(int j = 0; j < columns; j++) {
       plots.at(i).at(j)->end_day();

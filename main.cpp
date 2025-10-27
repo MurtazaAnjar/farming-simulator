@@ -18,7 +18,8 @@ int main() {
 
   while(game_in_progress) {
     ansi_clear();
-    std::cout<<"Legend: wasd(move), e(end day), q(quit), c(carrot), h(harvest), enter(confirm control)\nDay "<<dayCounter<<std::endl;
+    std::cout<<"Legend: wasd(move), e(end day), q(quit), c(carrot), h(harvest), enter(confirm control)"<<std::endl;
+    std::cout<<"Day: "<<farm.getDay()<<std::endl;
     if(!errorMes.empty()){
       std::cout<<errorMes<<std::endl;
       errorMes.clear();
@@ -43,7 +44,6 @@ int main() {
     } else if(player_input == "h") {
       farm.harvest(player.row(), player.column());
     }else if(player_input == "e"){
-      dayCounter++;
       farm.end_day();
     }else{
       errorMes="Invalid Input, try again...";

@@ -56,6 +56,14 @@ TEST_CASE( "it allows us to plant a carrot" ) {
     REQUIRE( farm.get_symbol(0, 1) == "c" );
 }
 
+TEST_CASE("it updates day") {
+    Player player;
+    Farm farm(7, 8, &player);
+    REQUIRE(farm.getDay() == 1);
+    farm.end_day();
+    REQUIRE(farm.getDay() == 2);
+}
+
 TEST_CASE("it allows growth") {
     Player player;
     Farm farm(7, 8, &player);
