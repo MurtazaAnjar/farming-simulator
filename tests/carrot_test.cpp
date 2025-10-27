@@ -5,7 +5,15 @@
 
 #include "../src/carrot.h"
 
-TEST_CASE( "it returns a v as its when it is a seedling" ) {
+TEST_CASE( "it returns a c as its when it is a seedling" ) {
     Carrot carrot;
-    REQUIRE( carrot.symbol() == "v" );
+    REQUIRE( carrot.symbol() == "c" );
+    REQUIRE( !carrot.matureFlag() );
+}
+
+TEST_CASE( "it returns a C when the carrot is mature" ) {
+    Carrot carrot;
+    carrot.end_day();
+    REQUIRE( carrot.symbol() == "C" );
+    REQUIRE( carrot.matureFlag() );
 }

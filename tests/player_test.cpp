@@ -24,3 +24,38 @@ TEST_CASE( "it moves the player down" ) {
     REQUIRE( player.row() == 1 );
     REQUIRE( player.column() == 0 );
 }
+
+TEST_CASE( "it moves the player to the left" ) {
+    Player player;
+    player.move_right(10);
+    REQUIRE( player.row() == 0 );
+    REQUIRE( player.column() == 1 );
+    player.move_left();
+    REQUIRE( player.row() == 0 );
+    REQUIRE( player.column() == 0 );
+}
+
+TEST_CASE( "it moves the player up" ) {
+    Player player;
+    player.move_down(10);
+    REQUIRE( player.row() == 1 );
+    REQUIRE( player.column() == 0 );
+    player.move_up();
+    REQUIRE( player.row() == 0 );
+    REQUIRE( player.column() == 0 );
+}
+
+TEST_CASE("Player stays in bounds") {
+    Player player;
+    player.move_left();
+    player.move_up();
+    REQUIRE(player.row() == 0);
+    REQUIRE(player.column() == 0);
+
+    for(int i = 0; i < 5; i++) {
+        player.move_right(2);
+        player.move_down(2);
+    }
+    REQUIRE(player.row() == 1);
+    REQUIRE(player.column() == 1);
+}

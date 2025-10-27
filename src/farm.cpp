@@ -56,3 +56,11 @@ void Farm::harvest(int row, int column){
     delete current_plot;
   }
 }
+
+Farm::~Farm() {
+  for (auto &row : plots) {
+    for (auto &plot : row) {
+      delete plot;
+    }
+  }
+}

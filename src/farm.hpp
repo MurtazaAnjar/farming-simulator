@@ -21,4 +21,5 @@ public:
     void plant(int row, int column, Plot *plot);
     void end_day();
     void harvest(int row, int column);
+    ~Farm();
 };

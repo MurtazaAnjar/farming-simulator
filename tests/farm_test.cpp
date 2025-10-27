@@ -51,7 +51,31 @@ TEST_CASE( "it returns the symbols for a 2x1 farm" ) {
 TEST_CASE( "it allows us to plant a carrot" ) {
     Player player;
     Farm farm(1, 2, &player);
-    Carrot carrot;
-    farm.plant(0, 1, &carrot);
-    REQUIRE( farm.get_symbol(0, 1) == "v" );
+    Carrot *carrot = new Carrot();
+    farm.plant(0, 1, carrot);
+    REQUIRE( farm.get_symbol(0, 1) == "c" );
 }
+
+TEST_CASE("it allows growth") {
+    Player player;
+    Farm farm(7, 8, &player);
+    Carrot *carrot = new Carrot();
+    farm.plant(0, 1, carrot);
+    REQUIRE(farm.get_symbol(0, 1) == "c");
+    farm.end_day();
+    REQUIRE(farm.get_symbol(0, 1) == "C");
+}
+
+TEST_CASE("it allows harvest") {
+    Player player;
+    Farm farm(7, 8, &player);
+    Carrot *carrot = new Carrot();
+    farm.plant(0, 1, carrot);
+    REQUIRE(farm.get_symbol(0, 1) == "c");
+    farm.harvest(0, 1);
+    REQUIRE(farm.get_symbol(0, 1) == "c");
+    farm.end_day();
+    farm.harvest(0, 1);
+    REQUIRE(farm.get_symbol(0, 1) == ".");
+}
+
