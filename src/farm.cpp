@@ -33,6 +33,26 @@ std::string Farm::get_symbol(int row, int column) {
 
 void Farm::plant(int row, int column, Plot *plot) {
   Plot *current_plot = plots.at(row).at(column);
-  plots.at(row).at(column) = plot;
-  delete current_plot;
+  if(plots.at(row).at(column)->symbol() == "."){
+    plots.at(row).at(column) = plot;
+    delete current_plot;
+  }
+  
+}
+
+void Farm::end_day(){
+  for(int i = 0; i < rows; i++) {
+    for(int j = 0; j < columns; j++) {
+      plots.at(i).at(j)->end_day();
+    }
+  }
+}
+
+void Farm::harvest(int row, int column){
+  Plot *current_plot = plots.at(row).at(column);
+  if (current_plot->matureFlag()) {
+    Soil* soil = new Soil();
+    plots.at(row).at(column) = soil;
+    delete current_plot;
+  }
 }

@@ -5,6 +5,8 @@
 #include "plot.h"
 
 class Soil : public Plot {
-public:
-    std::string symbol() override;
+    public:
+        std::string symbol() override;
+        void end_day() override;
+        bool matureFlag() override;
 };

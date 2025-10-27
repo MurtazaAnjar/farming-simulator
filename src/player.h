@@ -8,8 +8,8 @@ private:
 public:
     int row();
     int column();
-    void move_right();
-    void move_down();
+    void move_right(int cols);
+    void move_down(int rows);
     void move_left();
     void move_up();
 };

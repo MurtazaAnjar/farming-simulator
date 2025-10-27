@@ -12,9 +12,17 @@ int main() {
   FarmPrinter printer(&farm);
   bool game_in_progress = true;
   std::string player_input;
+  int dayCounter = 1;
+  std::string errorMes = "";
+
 
   while(game_in_progress) {
     ansi_clear();
+    std::cout<<"Legend: wasd(move), e(end day), q(quit), c(carrot), h(harvest), enter(confirm control)\nDay "<<dayCounter<<std::endl;
+    if(!errorMes.empty()){
+      std::cout<<errorMes<<std::endl;
+      errorMes.clear();
+    }
     std::cout<<std::endl;
     std::cout << printer.pp() << std::endl;
     std::cin >> player_input;
@@ -22,9 +30,9 @@ int main() {
     if(player_input == "q") {
       game_in_progress = false;
     } else if(player_input == "d") {
-      player.move_right();
+      player.move_right(8);
     } else if(player_input == "s") {
-      player.move_down();
+      player.move_down(7);
     } else if(player_input == "a") {
       player.move_left();
     } else if(player_input == "w") {
@@ -32,9 +40,13 @@ int main() {
     } else if(player_input == "c") {
       Carrot *carrot = new Carrot();
       farm.plant(player.row(), player.column(), carrot);
+    } else if(player_input == "h") {
+      farm.harvest(player.row(), player.column());
+    }else if(player_input == "e"){
+      dayCounter++;
+      farm.end_day();
     }else{
-      std::cout<<"Invalid Input (quitting...)"<<std::endl;
-      game_in_progress = false;
+      errorMes="Invalid Input, try again...";
     }
   }
 }

@@ -5,6 +5,11 @@
 #include "plot.h"
 
 class Carrot : public Plot {
-public:
-    std::string symbol() override;
+    private:
+        int age = 0;
+
+    public:
+        std::string symbol() override;
+        bool matureFlag() override;
+        void end_day() override;
 };

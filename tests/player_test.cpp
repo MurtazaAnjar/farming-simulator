@@ -13,14 +13,14 @@ TEST_CASE( "it starts the player in row zero, column zero" ) {
 
 TEST_CASE( "it moves the player to the right" ) {
     Player player;
-    player.move_right();
+    player.move_right(10);
     REQUIRE( player.row() == 0 );
     REQUIRE( player.column() == 1 );
 }
 
 TEST_CASE( "it moves the player down" ) {
     Player player;
-    player.move_down();
+    player.move_down(10);
     REQUIRE( player.row() == 1 );
     REQUIRE( player.column() == 0 );
 }
