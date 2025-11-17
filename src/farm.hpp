@@ -20,6 +20,7 @@ public:
     int number_of_columns();
     int getDay();
     std::string get_symbol(int row, int column);
+    void water(int row, int column);
     void plant(int row, int column, Plot *plot);
     void end_day();
     void harvest(int row, int column);

@@ -11,3 +11,7 @@ bool Soil::matureFlag(){
 void Soil::end_day() {
   // no-op
 }
+
+void Soil::water() {
+  // no-op
+}

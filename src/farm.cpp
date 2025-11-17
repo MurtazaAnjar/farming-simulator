@@ -62,6 +62,11 @@ void Farm::harvest(int row, int column){
   }
 }
 
+void Farm::water(int row, int column) {
+  Plot *current_plot = plots.at(row).at(column);
+  current_plot->water();
+}
+
 Farm::~Farm() {
   for (auto &row : plots) {
     for (auto &plot : row) {

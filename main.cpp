@@ -43,6 +43,8 @@ int main() {
       farm.plant(player.row(), player.column(), carrot);
     } else if(player_input == "h") {
       farm.harvest(player.row(), player.column());
+    } else if(player_input == "t") {
+      farm.water(player.row(), player.column());
     }else if(player_input == "e"){
       farm.end_day();
     }else{

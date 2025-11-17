@@ -7,9 +7,12 @@
 class Carrot : public Plot {
     private:
         int age = 0;
+        bool watered = false;
 
     public:
         std::string symbol() override;
         bool matureFlag() override;
         void end_day() override;
+        void water() override;
+        int get_age();
 };
