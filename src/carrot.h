@@ -10,9 +10,30 @@ class Carrot : public Plot {
         bool watered = false;
 
     public:
-        std::string symbol() override;
-        bool matureFlag() override;
-        void end_day() override;
-        void water() override;
-        int get_age();
+        std::string symbol() override {
+            if (age>=0 && age<1) {
+                return "*";
+            }else if (age>0 && age<2) {
+                return "c";
+            }else {
+                return "C";
+            }
+        }
+        bool matureFlag() override {
+            return (age>0)? true : false;
+        }
+        void end_day() override {
+            if(watered) {
+              age += 2;
+            } else {
+              age += 1;
+            }
+            watered = false;
+        }
+        void water() override {
+            watered = true;
+        }
+        int get_age() const {
+            return age;
+        }
 };
