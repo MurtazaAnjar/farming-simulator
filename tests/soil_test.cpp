@@ -14,4 +14,17 @@ TEST_CASE( "end_day is a no-op" ) {
     Soil soil;
     soil.end_day();
     REQUIRE( soil.symbol() == "." );
+    REQUIRE( !soil.matureFlag() );
+}
+
+TEST_CASE( "matureFlag is always false" ) {
+    Soil soil;
+    REQUIRE( !soil.matureFlag() );
+}
+
+TEST_CASE( "water is a no-op" ) {
+    Soil soil;
+    soil.water();
+    REQUIRE( soil.symbol() == "." );
+    REQUIRE( !soil.matureFlag() );
 }

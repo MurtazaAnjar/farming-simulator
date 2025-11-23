@@ -53,7 +53,7 @@ TEST_CASE( "it allows us to plant a carrot" ) {
     Farm farm(1, 2, &player);
     Carrot *carrot = new Carrot();
     farm.plant(0, 1, carrot);
-    REQUIRE( farm.get_symbol(0, 1) == "c" );
+    REQUIRE( farm.get_symbol(0, 1) == "*" );
 }
 
 TEST_CASE("it updates day") {
@@ -69,30 +69,42 @@ TEST_CASE("it allows growth") {
     Farm farm(7, 8, &player);
     Carrot *carrot = new Carrot();
     farm.plant(0, 1, carrot);
-    REQUIRE(farm.get_symbol(0, 1) == "c");
+    REQUIRE(farm.get_symbol(0, 1) == "*");
     farm.end_day();
-    REQUIRE(farm.get_symbol(0, 1) == "C");
+    REQUIRE(farm.get_symbol(0, 1) == "c");
 }
 
-TEST_CASE("it allows harvest") {
+TEST_CASE("it allows harvest only on mature plant") {
     Player player;
     Farm farm(7, 8, &player);
     Carrot *carrot = new Carrot();
+
     farm.plant(0, 1, carrot);
+    REQUIRE(farm.get_symbol(0, 1) == "*");
+    farm.harvest(0, 1);
+    REQUIRE(farm.get_symbol(0, 1) == "*");
+
+    farm.end_day();
     REQUIRE(farm.get_symbol(0, 1) == "c");
     farm.harvest(0, 1);
     REQUIRE(farm.get_symbol(0, 1) == "c");
+
     farm.end_day();
+    REQUIRE(farm.get_symbol(0, 1) == "C");
     farm.harvest(0, 1);
     REQUIRE(farm.get_symbol(0, 1) == ".");
 }
 
 TEST_CASE( "it allows us to water a carrot" ) {
-  Player player;
-  Farm farm(1, 2, &player);
-  Carrot carrot;
-  farm.plant(0, 1, &carrot);
-  farm.water(0, 1);
-  // REQUIRE( farm.get_symbol(0, 1) == "v" );     You get to decide!!!
+    Player player;
+    Farm farm(1, 2, &player);
+    Carrot *carrot = new Carrot();
+    farm.plant(0, 1, carrot);
+    farm.water(0, 1);
+    REQUIRE( farm.get_symbol(0, 1) == "*" );
+    REQUIRE(carrot->get_age() == 0);
+    farm.end_day();
+    REQUIRE(farm.get_symbol(0, 1) == "C");
+    REQUIRE(carrot->get_age() == 2);
 }
 

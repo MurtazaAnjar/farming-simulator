@@ -7,47 +7,30 @@
 #include "../src/farm.hpp"
 #include "../src/farm_printer.h"
 
-TEST_CASE( "it pretty prints a single plot of land" ) {
+TEST_CASE("it pretty prints a single plot of land") {
     Player player;
     Farm farm(1, 1, &player);
     FarmPrinter printer(&farm);
-    REQUIRE( printer.pp() == "@ \n" );
+    REQUIRE(printer.pp() == "@ \n");
 }
 
-TEST_CASE( "it pretty prints a 1x2 farm" ) {
+TEST_CASE("it pretty prints a 1x2 farm") {
     Player player;
     Farm farm(1, 2, &player);
     FarmPrinter printer(&farm);
-    REQUIRE( printer.pp() == "@ . \n" );
+    REQUIRE(printer.pp() == "@ . \n");
 }
 
-TEST_CASE( "it pretty prints a 2x1 farm" ) {
+TEST_CASE("it pretty prints a 2x1 farm") {
     Player player;
     Farm farm(2, 1, &player);
     FarmPrinter printer(&farm);
-    REQUIRE( printer.pp() == "@ \n. \n" );
+    REQUIRE(printer.pp() == "@ \n. \n");
 }
 
-TEST_CASE( "it pretty prints a 2x2 farm" ) {
+TEST_CASE("it pretty prints a 2x2 farm") {
     Player player;
     Farm farm(2, 2, &player);
     FarmPrinter printer(&farm);
-    REQUIRE( printer.pp() == "@ . \n. . \n" );
-}
-
-TEST_CASE( "it prints on day 2" ) {
-    Player player;
-    Farm farm(2, 2, &player);
-    FarmPrinter printer(&farm);
-    farm.end_day();
-    REQUIRE( printer.pp() == "\nDay: 2\n@ . \n. . \n" );
-}
-
-TEST_CASE( "it prints on day 3" ) {
-    Player player;
-    Farm farm(1, 1, &player);
-    FarmPrinter printer(&farm);
-    farm.end_day();
-    farm.end_day();
-    REQUIRE( printer.pp() == "\nDay: 3\n@ \n" );
+    REQUIRE(printer.pp() == "@ . \n. . \n");
 }

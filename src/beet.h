@@ -19,7 +19,7 @@ public:
         }
     }
     bool matureFlag() override {
-        return (age>0)? true : false;
+        return (age>6)? true : false;
     }
     void end_day() override {
         if(watered) {

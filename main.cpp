@@ -7,7 +7,7 @@
 #include "src/lettuce.h"
 #include "src/spinach.h"
 #include "src/beet.h"
-#include "src/brusselSpouts.h"
+#include "src/brusselSprouts.h"
 #include "src/ansi_clear.hpp"
 
 int main() {
@@ -23,7 +23,7 @@ int main() {
   while(game_in_progress) {
     ansi_clear();
     std::cout<<std::endl;
-    std::cout<<"Legend: wasd(move), e(end day), q(quit), h(harvest), enter(confirm control)\n\t"
+    std::cout<<"Legend: wasd(move), e(end day), q(quit), h(harvest), t(water), enter(confirm control)\n\t"
                "Plants: 1(carrot), 2(lettuce), 3(spinach), 4(beet), 5(brussel spouts)"<<std::endl;
     std::cout<<"Day: "<<farm.getDay()<<std::endl;
     if(!errorMes.empty()){
@@ -57,7 +57,7 @@ int main() {
       Beet *beet = new Beet();
       farm.plant(player.row(), player.column(), beet);
     } else if(player_input == "5") {
-      BrusselSpouts *brussel_spouts = new BrusselSpouts();
+      BrusselSprouts *brussel_spouts = new BrusselSprouts();
       farm.plant(player.row(), player.column(), brussel_spouts);
     } else if(player_input == "h") {
       farm.harvest(player.row(), player.column());
