@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 
+#include "bunny.h"
 #include "plot.h"
 #include "player.h"
 
@@ -12,6 +13,8 @@ private:
     int columns;
     int day{1};
     Player *player;
+    Bunny *bunny;
+
     std::vector<std::vector<Plot *>> plots;
 
 public:
@@ -20,6 +23,7 @@ public:
     int number_of_columns();
     int getDay();
     std::string get_symbol(int row, int column);
+    void spawnBunny(int chancePercent);
     void water(int row, int column);
     void plant(int row, int column, Plot *plot);
     void end_day();

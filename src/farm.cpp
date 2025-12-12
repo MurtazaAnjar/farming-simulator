@@ -1,10 +1,12 @@
 #include <string>
 #include <vector>
+#include <cstdlib>
 
 #include "farm.hpp"
 #include "soil.h"
+#include "bunny.h"
 
-Farm::Farm(int rows, int columns, Player *player) : rows(rows), columns(columns), player(player) {
+Farm::Farm(int rows, int columns, Player *player) : rows(rows), columns(columns), player(player), bunny(nullptr) {
   for(int i = 0; i < rows; i++) {
     std::vector<Plot *> row;
     for(int j = 0; j < columns; j++) {
@@ -30,8 +32,24 @@ int Farm::getDay() {
 std::string Farm::get_symbol(int row, int column) {
   if(player->row() == row && player->column() == column) {
     return "@";
-  } else {
-    return plots.at(row).at(column)->symbol();
+  }
+  if (bunny != nullptr) {
+    if (bunny->getRow() == row && bunny->getCol() == column) {
+      return bunny->getSymbol();
+    }
+  }
+  return plots.at(row).at(column)->symbol();
+}
+
+void Farm::spawnBunny(int chancePercent) {
+  if (bunny != nullptr) return; // bunny already exists
+
+  if ((rand() % 100) < chancePercent && bunny == nullptr) {
+    int spawnCol = columns-1; // default top-right
+    if (player->row() == 0 && player->column() == columns-1) {
+      spawnCol -= 1; // move 1 left if player is there
+    }
+    bunny = new Bunny(0, spawnCol);
   }
 }
 
@@ -50,6 +68,35 @@ void Farm::end_day(){
     for(int j = 0; j < columns; j++) {
       plots.at(i).at(j)->end_day();
     }
+  }
+
+  if (bunny != nullptr) {
+    //Eat vegetable if on a non-soil plot
+    Plot* currentPlot = plots.at(bunny->getRow()).at(bunny->getCol());
+    if (currentPlot->symbol() != ".") {
+      delete currentPlot;
+      plots.at(bunny->getRow()).at(bunny->getCol()) = new Soil();
+    }
+
+    //Check if bunny should be scared
+    if (bunny->isPlayerAdjacent(player->row(), player->column())) {
+      bunny->setState(Bunny::State::Scared);
+    }
+
+    //Move bunny
+    if (bunny->getState() == Bunny::State::Scared) {
+      bunny->moveScared(player->row(), player->column());
+    } else {
+      bunny->moveNormal();
+    }
+
+    //Remove bunny if it went off map
+    if (bunny->isOffMap(rows, columns)) {
+      delete bunny;
+      bunny = nullptr;
+    }
+  } else {
+    spawnBunny(100);
   }
 }
 

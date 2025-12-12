@@ -1,8 +1,10 @@
 #include <iostream>
+#include <cstdlib>
 
 #include "src/player.h"
 #include "src/farm.hpp"
 #include "src/farm_printer.h"
+#include "src/bunny.h"
 #include "src/carrot.h"
 #include "src/lettuce.h"
 #include "src/spinach.h"
