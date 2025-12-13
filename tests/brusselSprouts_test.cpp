@@ -16,7 +16,7 @@ TEST_CASE( "it returns a r when the brusselSprouts sprouts" ) {
     for (int i=0; i<=5; i++)
         brusselSprouts.end_day();
     REQUIRE( brusselSprouts.symbol() == "r" );
-    REQUIRE( brusselSprouts.matureFlag() );
+    REQUIRE( !brusselSprouts.matureFlag() );
 }
 
 TEST_CASE( "it returns a R when the brusselSprouts is mature" ) {

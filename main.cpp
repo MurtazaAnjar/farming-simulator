@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 
 #include "src/player.h"
 #include "src/farm.hpp"
@@ -13,6 +14,7 @@
 #include "src/ansi_clear.hpp"
 
 int main() {
+  std::srand(std::time(nullptr));
   Player player;
   Farm farm(7, 8, &player);
   FarmPrinter printer(&farm);

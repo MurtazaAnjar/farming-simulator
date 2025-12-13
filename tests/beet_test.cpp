@@ -16,7 +16,7 @@ TEST_CASE( "it returns a b when the beet sprouts" ) {
     beet.end_day();
     beet.end_day();
     REQUIRE( beet.symbol() == "b" );
-    REQUIRE( beet.matureFlag() );
+    REQUIRE( !beet.matureFlag() );
 }
 
 TEST_CASE( "it returns a B when the beet is mature" ) {

@@ -15,7 +15,7 @@ TEST_CASE( "it returns a c when the carrot sprouts" ) {
   Carrot carrot;
   carrot.end_day();
   REQUIRE( carrot.symbol() == "c" );
-  REQUIRE( carrot.matureFlag() );
+  REQUIRE( !carrot.matureFlag() );
 }
 
 TEST_CASE( "it returns a C when the carrot is mature" ) {

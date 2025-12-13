@@ -42,8 +42,6 @@ std::string Farm::get_symbol(int row, int column) {
 }
 
 void Farm::spawnBunny(int chancePercent) {
-  if (bunny != nullptr) return; // bunny already exists
-
   if ((rand() % 100) < chancePercent && bunny == nullptr) {
     int spawnCol = columns-1; // default top-right
     if (player->row() == 0 && player->column() == columns-1) {

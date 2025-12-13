@@ -16,7 +16,7 @@ TEST_CASE( "it returns a l when the lettuce sprouts" ) {
     lettuce.end_day();
     lettuce.end_day();
     REQUIRE( lettuce.symbol() == "l" );
-    REQUIRE( lettuce.matureFlag() );
+    REQUIRE( !lettuce.matureFlag() );
 }
 
 TEST_CASE( "it returns a L when the lettuce is mature" ) {

@@ -16,7 +16,7 @@ TEST_CASE( "it returns a s when the spinach sprouts" ) {
     spinach.end_day();
     spinach.end_day();
     REQUIRE( spinach.symbol() == "s" );
-    REQUIRE( spinach.matureFlag() );
+    REQUIRE( !spinach.matureFlag() );
 }
 
 TEST_CASE( "it returns a S when the spinach is mature" ) {

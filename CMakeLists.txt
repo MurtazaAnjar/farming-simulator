@@ -26,6 +26,7 @@ add_executable(beet_test tests/beet_test.cpp)
 add_executable(brusselSprouts_test tests/brusselSprouts_test.cpp)
 
 add_executable(player_test tests/player_test.cpp src/player.cpp)
+add_executable(bunny_test tests/bunny_test.cpp src/bunny.cpp)
 add_executable(main main.cpp src/farm.cpp src/farm_printer.cpp src/soil.cpp src/player.cpp src/bunny.cpp)
 
 target_link_libraries(farm_test PRIVATE Catch2::Catch2WithMain)
@@ -39,3 +40,4 @@ target_link_libraries(beet_test PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(brusselSprouts_test PRIVATE Catch2::Catch2WithMain)
 
 target_link_libraries(player_test PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(bunny_test PRIVATE Catch2::Catch2WithMain)
